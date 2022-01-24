@@ -22,6 +22,7 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'https://github.com/ycm-core/YouCompleteMe.git'
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'morhetz/gruvbox'
 call plug#end()
 
 lua << END
@@ -33,3 +34,6 @@ lua << END
 END
 
 nnoremap <C-p> :Files<CR>
+nnoremap <C-e> :Ex<CR>
+
+colorscheme gruvbox
