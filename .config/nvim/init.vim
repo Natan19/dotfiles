@@ -13,8 +13,10 @@ set noswapfile
 set nobackup
 set incsearch
 set hidden
-" set autochdir
-"
+set foldlevelstart=20
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 set colorcolumn=100
 highlight ColorColumn ctermbg=0 
 highlight Pmenu ctermbg=lightgray 
@@ -45,12 +47,15 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 call plug#end()
 
+let g:NERDTreeWinSize=60
+
 lua require('treeshitter')
 lua require('lualaine')
 lua require('autocomplete')
 lua require('troubleindouble')
 lua require('golspconfig')
 lua require('jsonlspconfig')
+lua require('yamllspconfig')
 
 set completeopt=menu,menuone,noselect 
 
@@ -71,7 +76,10 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-
+nnoremap <leader>tf :tab split<CR>
+nnoremap <leader>tc :tab close<CR>
+nnoremap <leader><C-f> :set foldmethod=syntax<CR>
+nnoremap <leader>e :TagbarToggle<CR>
 
 colorscheme gruvbox
 
