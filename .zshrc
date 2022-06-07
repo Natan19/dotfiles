@@ -18,6 +18,11 @@ ZSH_THEME="aussiegeek"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+#
+configSSH() {
+  eval "$(ssh-agent)"
+  ssh-add ~/.ssh/id_github
+}
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
