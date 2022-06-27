@@ -14,6 +14,10 @@ configSSH() {
   eval "$(ssh-agent)"
   ssh-add ~/.ssh/id_github
 }
+
+gtex() {
+  cd ~/snap/exercism/5/exercism
+}
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/

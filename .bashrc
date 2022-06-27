@@ -183,18 +183,6 @@ _Pacdiff() {
     fi
 }
 
-gtvj() {
-  cd ~/dev-work/vojo-backend  
-}
-
-gtok() {
-  cd ~/dev-work/orkestro
-}
-
-gtdp() {
-  cd ~/dev-personal  
-}
-
 gtex() {
   cd ~/snap/exercism/5/exercism
 }
