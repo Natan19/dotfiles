@@ -42,9 +42,12 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'preservim/nerdtree'
     Plug 'folke/trouble.nvim'
-    Plug 'rcarriga/vim-ultest'
     Plug 'nvim-treesitter/nvim-treesitter', {'do':':TSUpdate'}
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+    Plug 'tyru/open-browser.vim'
+    Plug 'aklt/plantuml-syntax'
+    Plug 'weirongxu/plantuml-previewer.vim'
+    Plug 'phelipetls/jsonpath.nvim'
 call plug#end()
 
 let g:NERDTreeWinSize=60
@@ -56,6 +59,8 @@ lua require('troubleindouble')
 lua require('golspconfig')
 lua require('jsonlspconfig')
 lua require('yamllspconfig')
+lua require('jsonpath-config')
+lua require('lua-lsp')
 
 set completeopt=menu,menuone,noselect 
 
@@ -70,8 +75,8 @@ nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fc <cmd>Telescope lsp_code_actions<cr>
 nnoremap <leader><cr> :lua require'telescope.builtin'.lsp_definitions{}<CR>
+nnoremap <leader>fc :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -89,7 +94,18 @@ let g:rustfmt_autosave = 1
 " netrw
 let g:netrw_liststyle = 3
 
+let g:NERDTreeShowLineNumbers=1
+autocmd BufEnter NERD_* setlocal rnu
+
+
 " neoformat
 let g:neoformat_try_node_exe = 1
 autocmd BufWritePre *.ts Neoformat
+autocmd BufWritePre *.tsx Neoformat
 autocmd BufWritePre *.go Neoformat
+
+au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
+    \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
+    \  1,
+    \  0
+    \)
