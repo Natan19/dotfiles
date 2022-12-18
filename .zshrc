@@ -72,6 +72,7 @@ gtex() {
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+source /usr/share/nvm/init-nvm.sh
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
