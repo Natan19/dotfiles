@@ -244,6 +244,13 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
+local nmap = function(keys, func, desc)
+  if desc then
+    desc = 'Natan\'s keymaps: ' .. desc
+  end
+
+  vim.keymap.set('n', keys, func, { desc = desc })
+end
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
@@ -252,6 +259,11 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Filetree
+--
+nmap('<leader>t', function() vim.cmd.Neotree('toggle', 'left', 'filesystem') end, '[T]oggle neotree')
+nmap('<leader>tr', function() vim.cmd.Neotree('toggle', 'reveal_force_cwd') end, '[T]oggle [R]eveal neotree')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -405,9 +417,7 @@ local on_attach = function(_, bufnr)
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
-  -- Filetree
-  nmap('<leader>t', function() vim.cmd.Neotree('toggle', 'left', 'filesystem') end, '[T]oggle neotree')
-  nmap('<leader>tr', function() vim.cmd.Neotree('toggle', 'reveal') end, '[T]oggle [R]eveal neotree')
+
 
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
