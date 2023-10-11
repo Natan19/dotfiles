@@ -264,6 +264,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 nmap('<leader>t', function() vim.cmd.Neotree('toggle', 'left', 'filesystem') end, '[T]oggle neotree')
 nmap('<leader>tr', function() vim.cmd.Neotree('toggle', 'reveal_force_cwd') end, '[T]oggle [R]eveal neotree')
 nmap('<leader>rt', function() vim.cmd.TestNearest() end, '[R]un [T]estNearest')
+nmap('<leader>rat', function() vim.cmd.TestSuite() end, '[R]un [A]ll [T]ests')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -387,7 +388,7 @@ local on_attach = function(_, bufnr)
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
+  nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
