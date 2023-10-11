@@ -198,7 +198,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-   { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -265,6 +265,7 @@ nmap('<leader>t', function() vim.cmd.Neotree('toggle', 'left', 'filesystem') end
 nmap('<leader>tr', function() vim.cmd.Neotree('toggle', 'reveal_force_cwd') end, '[T]oggle [R]eveal neotree')
 nmap('<leader>rt', function() vim.cmd.TestNearest() end, '[R]un [T]estNearest')
 nmap('<leader>rat', function() vim.cmd.TestSuite() end, '[R]un [A]ll [T]ests')
+nmap('<leader>ff', function() vim.cmd.Format() end, '[F]ile [F]ormat')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
