@@ -112,7 +112,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
     'morhetz/gruvbox',
     priority = 1000,
     config = function()
@@ -264,6 +263,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 --
 nmap('<leader>t', function() vim.cmd.Neotree('toggle', 'left', 'filesystem') end, '[T]oggle neotree')
 nmap('<leader>tr', function() vim.cmd.Neotree('toggle', 'reveal_force_cwd') end, '[T]oggle [R]eveal neotree')
+nmap('<leader>rt', function() vim.cmd.TestNearest() end, '[R]un [T]estNearest')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -309,7 +309,7 @@ vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim',
-      'json', 'yaml' },
+      'json', 'yaml', 'markdown' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
